@@ -1,0 +1,6 @@
+# Keep the installable zip (git archive) free of repository-only files.
+/.gitignore      export-ignore
+/.gitattributes  export-ignore
+/screenshots     export-ignore
+/README.md       export-ignore
+/docs            export-ignore

@@ -1,0 +1,23 @@
+/* Meta Fields for Elementor — meta box styles */
+.mfbe-fields { display: flex; flex-wrap: wrap; gap: 0 16px; }
+.mfbe-row { box-sizing: border-box; flex: 0 0 auto; width: calc( var( --mfbe-w, 100% ) - 12px ); margin-bottom: 14px; }
+.mfbe-row[ style*="--mfbe-w:100%" ], .mfbe-ctx-side .mfbe-row { width: 100%; }
+
+.mfbe-label { display: block; font-weight: 600; margin-bottom: 4px; }
+.mfbe-row .regular-text, .mfbe-row select, .mfbe-row textarea { width: 100%; max-width: 100%; }
+.mfbe-row .description { margin: 4px 0 0; }
+
+.mfbe-choices label { display: block; margin-bottom: 4px; }
+
+.mfbe-switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+.mfbe-switch input[type="checkbox"] { position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; z-index: 1; }
+.mfbe-slider { position: absolute; inset: 0; background: #c3c4c7; border-radius: 24px; transition: background .15s; }
+.mfbe-slider::before { content: ""; position: absolute; width: 18px; height: 18px; inset-inline-start: 3px; top: 3px; background: #fff; border-radius: 50%; transition: transform .15s; }
+.mfbe-switch input:checked + .mfbe-slider { background: #2271b1; }
+.mfbe-switch input:checked + .mfbe-slider::before { transform: translateX( 20px ); }
+[dir="rtl"] .mfbe-switch input:checked + .mfbe-slider::before { transform: translateX( -20px ); }
+
+.mfbe-media-preview { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.mfbe-thumb { position: relative; display: inline-block; width: 80px; height: 80px; border: 1px solid #c3c4c7; border-radius: 3px; overflow: hidden; background: #f6f7f7; }
+.mfbe-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mfbe-thumb-remove { position: absolute; top: 2px; inset-inline-end: 2px; width: 20px; height: 20px; padding: 0; border: 0; border-radius: 50%; background: rgba( 0, 0, 0, .65 ); color: #fff; line-height: 20px; cursor: pointer; }

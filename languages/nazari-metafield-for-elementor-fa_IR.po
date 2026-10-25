@@ -1,0 +1,548 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Nazari Metafield For Elementor 1.0.2\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Nazari Metafield"
+msgstr "Nazari Metafield"
+
+msgid "Dashboard"
+msgstr "داشبورد"
+
+msgid "Settings"
+msgstr "تنظیمات"
+
+msgid "Send feedback"
+msgstr "ارسال بازخورد"
+
+msgid "Nazari Metafield For Elementor — made by %s"
+msgstr "Nazari Metafield For Elementor — ساخته‌شده توسط %s"
+
+msgid "Copied!"
+msgstr "کپی شد!"
+
+msgid "Field Groups"
+msgstr "گروه‌های فیلد"
+
+msgid "Build meta fields. Use them anywhere in Elementor."
+msgstr "متافیلد بسازید و در هر جای المنتور استفاده کنید."
+
+msgid "Create field groups for posts and custom post types, then show the values with the Meta Field widget, dynamic tags or a shortcode."
+msgstr "برای نوشته‌ها و انواع نوشتهٔ سفارشی گروه فیلد بسازید و مقدارها را با ویجت «متا فیلد»، تگ‌های داینامیک یا شورت‌کد نمایش دهید."
+
+msgid "Create a field group"
+msgstr "ساخت گروه فیلد"
+
+msgid "Field groups"
+msgstr "گروه‌های فیلد"
+
+msgid "Fields"
+msgstr "فیلدها"
+
+msgid "Post types covered"
+msgstr "انواع نوشتهٔ پوشش‌داده‌شده"
+
+msgid "Active"
+msgstr "فعال"
+
+msgid "Missing"
+msgstr "نصب نیست"
+
+msgid "Elementor"
+msgstr "المنتور"
+
+msgid "Your field groups"
+msgstr "گروه‌های فیلد شما"
+
+msgid "Add new"
+msgstr "افزودن جدید"
+
+msgid "No field groups yet. Create your first one to get started."
+msgstr "هنوز گروه فیلدی ندارید. برای شروع، اولین گروه را بسازید."
+
+msgid "Click to copy the shortcode"
+msgstr "برای کپی شورت‌کد کلیک کنید"
+
+msgid "How it works"
+msgstr "نحوهٔ کار"
+
+msgid "Create a group"
+msgstr "یک گروه بسازید"
+
+msgid "Pick the post types, add your fields and publish."
+msgstr "انواع نوشته را انتخاب کنید، فیلدها را اضافه کنید و منتشر کنید."
+
+msgid "Fill the values"
+msgstr "مقدارها را وارد کنید"
+
+msgid "The meta box appears on the edit screen of those post types."
+msgstr "متاباکس در صفحهٔ ویرایش همان انواع نوشته نمایش داده می‌شود."
+
+msgid "Show them in Elementor"
+msgstr "در المنتور نمایش دهید"
+
+msgid "Use the Meta Field widget, dynamic tags (Elementor Pro) or the shortcode."
+msgstr "از ویجت «متا فیلد»، تگ‌های داینامیک (المنتور پرو) یا شورت‌کد استفاده کنید."
+
+msgid "System status"
+msgstr "وضعیت سیستم"
+
+msgid "Not active"
+msgstr "غیرفعال"
+
+msgid "Elementor Pro (dynamic tags)"
+msgstr "المنتور پرو (تگ‌های داینامیک)"
+
+msgid "Plugin version"
+msgstr "نسخهٔ افزونه"
+
+msgid "Elementor is not active. You can still build fields and use the shortcode, but the widget and dynamic tags need Elementor."
+msgstr "المنتور فعال نیست. همچنان می‌توانید فیلد بسازید و از شورت‌کد استفاده کنید، ولی ویجت و تگ‌های داینامیک به المنتور نیاز دارند."
+
+msgid "Shortcode"
+msgstr "شورت‌کد"
+
+msgid "Optional attributes: post_id, format=\"text\", size, columns, fallback."
+msgstr "پارامترهای اختیاری: post_id، format=\"text\"، size، columns، fallback."
+
+msgid "Help me improve it"
+msgstr "در بهتر شدنش کمکم کنید"
+
+msgid "Found a bug or have an idea? Tell me what you think."
+msgstr "باگی پیدا کردید یا ایده‌ای دارید؟ نظرتان را برایم بنویسید."
+
+msgid "Settings saved."
+msgstr "تنظیمات ذخیره شد."
+
+msgid "Thank you! Your message was sent."
+msgstr "ممنون! پیام شما ارسال شد."
+
+msgid "Please write a little more (at least 10 characters)."
+msgstr "لطفاً کمی بیشتر بنویسید (حداقل ۱۰ نویسه)."
+
+msgid "You just sent a message. Please wait a minute before sending another one."
+msgstr "همین الان یک پیام فرستادید. لطفاً یک دقیقه صبر کنید و دوباره امتحان کنید."
+
+msgid "The email could not be sent from this server. Your text is kept below; please try again later or write to me directly."
+msgstr "ایمیل از این سرور ارسال نشد. متن شما پایین نگه داشته شده؛ لطفاً بعداً دوباره امتحان کنید یا مستقیم به من ایمیل بزنید."
+
+msgid "General"
+msgstr "عمومی"
+
+msgid "Feedback"
+msgstr "بازخورد"
+
+msgid "About"
+msgstr "دربارهٔ افزونه"
+
+msgid "General settings"
+msgstr "تنظیمات عمومی"
+
+msgid "Delete data on uninstall"
+msgstr "حذف اطلاعات هنگام پاک کردن افزونه"
+
+msgid "When you delete the plugin, also remove field groups and settings. Values already saved on posts are always kept."
+msgstr "هنگام حذف افزونه، گروه‌های فیلد و تنظیمات هم پاک شوند. مقدارهایی که روی نوشته‌ها ذخیره شده‌اند همیشه باقی می‌مانند."
+
+msgid "Save settings"
+msgstr "ذخیرهٔ تنظیمات"
+
+msgid "Criticism, ideas and bug reports are all welcome — they go straight to the developer and help make the plugin better."
+msgstr "انتقاد، ایده و گزارش باگ، همه خوش‌آمدند؛ مستقیم به دست توسعه‌دهنده می‌رسند و به بهتر شدن افزونه کمک می‌کنند."
+
+msgid "Message type"
+msgstr "نوع پیام"
+
+msgid "How do you like the plugin?"
+msgstr "افزونه را چطور می‌بینید؟"
+
+msgid "Your name"
+msgstr "نام شما"
+
+msgid "Your email (for a reply)"
+msgstr "ایمیل شما (برای دریافت پاسخ)"
+
+msgid "Your message"
+msgstr "پیام شما"
+
+msgid "Include technical info (site address, WordPress, PHP, Elementor and plugin versions) to help me reproduce problems."
+msgstr "اطلاعات فنی (نشانی سایت، نسخهٔ وردپرس، PHP، المنتور و افزونه) هم ارسال شود تا بتوانم مشکل را بازسازی کنم."
+
+msgid "Send message"
+msgstr "ارسال پیام"
+
+msgid "What happens next?"
+msgstr "بعد از ارسال چه می‌شود؟"
+
+msgid "Your message is emailed to the plugin author. If you leave your email address, you may get a reply."
+msgstr "پیام شما برای نویسندهٔ افزونه ایمیل می‌شود. اگر ایمیل خود را بنویسید، ممکن است پاسخ بگیرید."
+
+msgid "New name and branding."
+msgstr "نام و برند جدید."
+
+msgid "Dashboard, settings page and feedback form."
+msgstr "داشبورد، صفحهٔ تنظیمات و فرم بازخورد."
+
+msgid "Field builder: type icons, duplicate field, expand/collapse and copy shortcode."
+msgstr "فیلدساز: آیکن نوع فیلد، کپی کردن فیلد، باز/بسته کردن همه و کپی شورت‌کد."
+
+msgid "First release: field groups, 14 field types, Elementor widget, dynamic tags and shortcode."
+msgstr "نسخهٔ اول: گروه فیلد، ۱۴ نوع فیلد، ویجت المنتور، تگ‌های داینامیک و شورت‌کد."
+
+msgid "Version %s"
+msgstr "نسخهٔ %s"
+
+msgid "A lightweight meta box builder with first-class Elementor support."
+msgstr "سازندهٔ سبک متاباکس با پشتیبانی کامل از المنتور."
+
+msgid "Changelog"
+msgstr "تاریخچهٔ تغییرات"
+
+msgid "Author"
+msgstr "نویسنده"
+
+msgid "Name"
+msgstr "نام"
+
+msgid "Website"
+msgstr "وب‌سایت"
+
+msgid "License"
+msgstr "مجوز"
+
+msgid "You are not allowed to do this."
+msgstr "شما اجازهٔ انجام این کار را ندارید."
+
+msgid "Suggestion"
+msgstr "پیشنهاد"
+
+msgid "Criticism"
+msgstr "انتقاد"
+
+msgid "Bug report"
+msgstr "گزارش باگ"
+
+msgid "Feature request"
+msgstr "درخواست قابلیت"
+
+msgid "Other"
+msgstr "سایر"
+
+msgid "Text"
+msgstr "متن"
+
+msgid "Textarea"
+msgstr "متن چندخطی"
+
+msgid "Number"
+msgstr "عدد"
+
+msgid "Email"
+msgstr "ایمیل"
+
+msgid "URL"
+msgstr "نشانی اینترنتی (URL)"
+
+msgid "Select"
+msgstr "انتخاب (لیست کشویی)"
+
+msgid "Radio"
+msgstr "رادیویی"
+
+msgid "Checkbox (multiple)"
+msgstr "چک‌باکس (چندگزینه‌ای)"
+
+msgid "Switcher"
+msgstr "سوئیچ (روشن/خاموش)"
+
+msgid "Date"
+msgstr "تاریخ"
+
+msgid "Color"
+msgstr "رنگ"
+
+msgid "WYSIWYG editor"
+msgstr "ویرایشگر متن غنی"
+
+msgid "Image"
+msgstr "تصویر"
+
+msgid "Gallery"
+msgstr "گالری"
+
+msgid "— Select —"
+msgstr "— انتخاب کنید —"
+
+msgid "Remove"
+msgstr "حذف"
+
+msgid "Select images"
+msgstr "انتخاب تصاویر"
+
+msgid "Select image"
+msgstr "انتخاب تصویر"
+
+msgid "Clear"
+msgstr "پاک کردن"
+
+msgid "Yes"
+msgstr "بله"
+
+msgid "No"
+msgstr "خیر"
+
+msgid "Field Group"
+msgstr "گروه فیلد"
+
+msgid "Add New"
+msgstr "افزودن"
+
+msgid "Add New Field Group"
+msgstr "افزودن گروه فیلد جدید"
+
+msgid "Edit Field Group"
+msgstr "ویرایش گروه فیلد"
+
+msgid "New Field Group"
+msgstr "گروه فیلد جدید"
+
+msgid "View Field Group"
+msgstr "مشاهدهٔ گروه فیلد"
+
+msgid "Search Field Groups"
+msgstr "جستجوی گروه‌های فیلد"
+
+msgid "No field groups found."
+msgstr "هیچ گروه فیلدی پیدا نشد."
+
+msgid "No field groups found in Trash."
+msgstr "هیچ گروه فیلدی در زباله‌دان نیست."
+
+msgid "Group settings"
+msgstr "تنظیمات گروه"
+
+msgid "Using the fields in Elementor"
+msgstr "استفاده از فیلدها در المنتور"
+
+msgid "Normal (below the editor)"
+msgstr "معمولی (زیر ویرایشگر)"
+
+msgid "Side"
+msgstr "کنار صفحه (سایدبار)"
+
+msgid "Advanced"
+msgstr "پیشرفته"
+
+msgid "High"
+msgstr "بالا"
+
+msgid "Default"
+msgstr "پیش‌فرض"
+
+msgid "Low"
+msgstr "پایین"
+
+msgid "Show on post types"
+msgstr "نمایش در انواع نوشته"
+
+msgid "Position"
+msgstr "جایگاه"
+
+msgid "Priority"
+msgstr "اولویت"
+
+msgid "No fields yet. Click “Add field” to create the first one."
+msgstr "هنوز فیلدی وجود ندارد. برای ساخت اولین فیلد روی «افزودن فیلد» کلیک کنید."
+
+msgid "Expand all"
+msgstr "باز کردن همه"
+
+msgid "Collapse all"
+msgstr "بستن همه"
+
+msgid "Add field"
+msgstr "افزودن فیلد"
+
+msgid "Widget"
+msgstr "ویجت"
+
+msgid "Drag the “Meta Field” widget into any page, template or loop item and pick a field."
+msgstr "ویجت «متا فیلد» را به هر صفحه، قالب یا آیتم لوپ بکشید و یک فیلد انتخاب کنید."
+
+msgid "Dynamic tags"
+msgstr "تگ‌های داینامیک"
+
+msgid "With Elementor Pro, click the dynamic (database) icon of any control and choose “Meta Fields”."
+msgstr "در المنتور پرو روی آیکن داینامیک (دیتابیس) هر کنترل کلیک کنید و «متا فیلدها» را انتخاب کنید."
+
+msgid "New field"
+msgstr "فیلد جدید"
+
+msgid "Edit"
+msgstr "ویرایش"
+
+msgid "Close"
+msgstr "بستن"
+
+msgid "Remove this field?"
+msgstr "این فیلد حذف شود؟"
+
+msgid "Label"
+msgstr "برچسب"
+
+msgid "Meta key"
+msgstr "کلید متا"
+
+msgid "Lowercase letters, numbers and underscores only. This is the key saved in the database."
+msgstr "فقط حروف کوچک انگلیسی، عدد و آندرلاین. این همان کلیدی است که در دیتابیس ذخیره می‌شود."
+
+msgid "Type"
+msgstr "نوع"
+
+msgid "Width (%)"
+msgstr "عرض (٪)"
+
+msgid "Description"
+msgstr "توضیحات"
+
+msgid "Placeholder"
+msgstr "متن راهنما (Placeholder)"
+
+msgid "Default value"
+msgstr "مقدار پیش‌فرض"
+
+msgid "Options"
+msgstr "گزینه‌ها"
+
+msgid "One option per line, written as value : label"
+msgstr "هر گزینه در یک خط، به‌صورت مقدار : برچسب"
+
+msgid "Min"
+msgstr "حداقل"
+
+msgid "Max"
+msgstr "حداکثر"
+
+msgid "Step"
+msgstr "گام"
+
+msgid "Duplicate"
+msgstr "کپی فیلد"
+
+msgid "Copy"
+msgstr "کپی"
+
+msgid "Every field needs a unique meta key (lowercase letters, numbers and underscores)."
+msgstr "هر فیلد باید یک کلید متای یکتا داشته باشد (حروف کوچک انگلیسی، عدد و آندرلاین)."
+
+msgid "Post types"
+msgstr "انواع نوشته"
+
+msgid "Use selected"
+msgstr "استفاده از انتخاب‌شده"
+
+msgid "— Select a field —"
+msgstr "— یک فیلد انتخاب کنید —"
+
+msgid "%1$s: %2$s"
+msgstr "%1$s: %2$s"
+
+msgid "Meta Fields"
+msgstr "متا فیلدها"
+
+msgid "Meta Field"
+msgstr "متا فیلد"
+
+msgid "Field"
+msgstr "فیلد"
+
+msgid "Source"
+msgstr "منبع"
+
+msgid "Current post"
+msgstr "نوشتهٔ جاری"
+
+msgid "Specific post ID"
+msgstr "شناسهٔ یک نوشتهٔ مشخص"
+
+msgid "Post ID"
+msgstr "شناسهٔ نوشته"
+
+msgid "HTML tag"
+msgstr "تگ HTML"
+
+msgid "Text before"
+msgstr "متن قبل از مقدار"
+
+msgid "Text after"
+msgstr "متن بعد از مقدار"
+
+msgid "Fallback"
+msgstr "مقدار جایگزین"
+
+msgid "Shown when the field is empty."
+msgstr "وقتی فیلد خالی باشد نمایش داده می‌شود."
+
+msgid "Hide when empty"
+msgstr "مخفی کردن در صورت خالی بودن"
+
+msgid "Image & Gallery"
+msgstr "تصویر و گالری"
+
+msgid "Gallery columns"
+msgstr "تعداد ستون‌های گالری"
+
+msgid "Gallery gap"
+msgstr "فاصلهٔ بین تصاویر گالری"
+
+msgid "Style"
+msgstr "استایل"
+
+msgid "Alignment"
+msgstr "تراز"
+
+msgid "Left"
+msgstr "چپ"
+
+msgid "Center"
+msgstr "وسط"
+
+msgid "Right"
+msgstr "راست"
+
+msgid "Justified"
+msgstr "دوطرفه"
+
+msgid "Text color"
+msgstr "رنگ متن"
+
+msgid "Select a field in the widget settings."
+msgstr "در تنظیمات ویجت یک فیلد انتخاب کنید."
+
+msgid "This field is empty for the current post."
+msgstr "این فیلد برای نوشتهٔ جاری خالی است."
+
+msgid "Meta Field (Text)"
+msgstr "متا فیلد (متن)"
+
+msgid "Meta Field (Number)"
+msgstr "متا فیلد (عدد)"
+
+msgid "Meta Field (URL)"
+msgstr "متا فیلد (URL)"
+
+msgid "Meta Field (Color)"
+msgstr "متا فیلد (رنگ)"
+
+msgid "Meta Field (Image)"
+msgstr "متا فیلد (تصویر)"
+
+msgid "Meta Field (Gallery)"
+msgstr "متا فیلد (گالری)"
+
+msgid "The older “Meta Fields for Elementor” plugin was deactivated automatically. Your field groups and saved values are kept. Please reload this page."
+msgstr "افزونهٔ قدیمی «Meta Fields for Elementor» به‌طور خودکار غیرفعال شد. گروه‌های فیلد و مقدارهای ذخیره‌شده‌تان حفظ شده است. لطفاً صفحه را دوباره بارگذاری کنید."

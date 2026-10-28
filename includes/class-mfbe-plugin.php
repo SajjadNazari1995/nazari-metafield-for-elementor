@@ -13,21 +13,28 @@ final class MFBE_Plugin {
 	}
 
 	private function __construct() {
+		require_once MFBE_PATH . 'includes/class-mfbe-conditions.php';
 		require_once MFBE_PATH . 'includes/class-mfbe-registry.php';
 		require_once MFBE_PATH . 'includes/class-mfbe-fields.php';
 		require_once MFBE_PATH . 'includes/class-mfbe-groups.php';
 		require_once MFBE_PATH . 'includes/class-mfbe-metaboxes.php';
 		require_once MFBE_PATH . 'includes/class-mfbe-shortcode.php';
+		require_once MFBE_PATH . 'includes/class-mfbe-columns.php';
+		require_once MFBE_PATH . 'includes/class-mfbe-tools.php';
+		require_once MFBE_PATH . 'includes/class-mfbe-queries.php';
 
 		add_action( 'init', array( $this, 'load_textdomain' ) );
 
 		MFBE_Groups::init();
 		MFBE_Metaboxes::init();
 		MFBE_Shortcode::init();
+		MFBE_Queries::init();
 
 		if ( is_admin() ) {
 			require_once MFBE_PATH . 'includes/class-mfbe-admin.php';
 			MFBE_Admin::init();
+			MFBE_Columns::init();
+			MFBE_Tools::init();
 		}
 
 		if ( did_action( 'elementor/loaded' ) ) {

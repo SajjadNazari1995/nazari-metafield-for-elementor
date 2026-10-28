@@ -4,7 +4,7 @@ Tags: custom fields, meta box, elementor, dynamic tags, metabox
 Requires at least: 5.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.2
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,9 +17,14 @@ Nazari Metafield For Elementor is a lightweight, JetEngine-style meta box builde
 **Features**
 
 * Visual field group builder: drag to reorder, duplicate fields, copy each field's shortcode.
-* 14 field types: text, textarea, number, email, URL, select, radio, checkbox, switcher, date, color, WYSIWYG, image and gallery.
+* 20 field types: text, textarea, number, email, URL, select, radio, checkbox, switcher, date, time, date and time, color, range, WYSIWYG, image, gallery, file, link and embed.
+* Validation (required, min/max length, unique) and conditional logic between fields.
+* Show fields as sortable columns in the post list, with filters.
+* Import and export field groups as JSON; duplicate a group in one click.
 * Choose the post types, position and priority of every meta box.
-* "Meta Field" Elementor widget (works with free Elementor).
+* "Meta Field" and "Meta Field Link" Elementor widgets (work with free Elementor).
+* Meta Field Visibility: show or hide any Elementor element by a meta field.
+* Loop query rules: filter and sort Elementor Pro Posts / Loop Grid by a meta field (Query ID).
 * Dynamic tags for Elementor Pro: text, number, URL, color, image and gallery.
 * Shortcode: `[mfbe field="meta_key"]`.
 * Values are stored as regular post meta, so other tools can read them.
@@ -42,7 +47,11 @@ If the older "Meta Fields for Elementor" 1.0.0 is active, it is deactivated auto
 
 = Do I need Elementor Pro? =
 
-No. The Meta Field widget works with free Elementor. Dynamic tags need Elementor Pro.
+No. The widgets and Meta Field Visibility work with free Elementor. Dynamic tags and the Query ID option of loops are Elementor Pro features.
+
+= Does it send data anywhere? =
+
+No. The only outgoing message is the feedback form, which emails the author when you press Send. Nothing is sent automatically.
 
 = Where are the values stored? =
 
@@ -52,7 +61,31 @@ As normal post meta under the meta key you choose for each field.
 
 Nothing, unless you enable "Delete data on uninstall" in the settings. Even then, values saved on posts are kept.
 
+== Screenshots ==
+
+1. Dashboard with stats, field groups and system status.
+2. Visual field group builder with validation, admin columns and conditional logic.
+3. The meta box on the post edit screen (conditional fields are hidden until needed).
+4. Loop query rules for Elementor Pro Query IDs.
+
+== Upgrade Notice ==
+
+= 1.2.0 =
+Adds 6 field types, validation, conditional logic, admin columns, import/export and new Elementor features. Existing data is untouched.
+
 == Changelog ==
+
+= 1.2.0 =
+* Elementor: Meta Field Visibility on sections, columns, containers and widgets.
+* Elementor: loop query rules by Query ID (Settings > Loop Queries).
+* Elementor: new Meta Field Link widget; dynamic tags support the new field types.
+
+= 1.1.0 =
+* New field types: file, link, time, date and time, embed and range.
+* Validation: required, min/max length and unique values.
+* Conditional logic between fields.
+* Admin list columns (sortable) and filters.
+* JSON import/export and duplicate group.
 
 = 1.0.2 =
 * New name and branding, top-level menu and dashboard.

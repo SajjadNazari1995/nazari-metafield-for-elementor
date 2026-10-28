@@ -44,3 +44,22 @@
 		}, 6000 );
 	}
 }() );
+
+/* Loop query rules: add / remove rows. */
+( function () {
+	'use strict';
+	var list = document.getElementById( 'mfbe-rules' );
+	var tpl = document.getElementById( 'mfbe-rule-template' );
+	var add = document.getElementById( 'mfbe-rule-add' );
+	if ( ! list || ! tpl || ! add ) { return; }
+
+	var next = list.children.length;
+	add.addEventListener( 'click', function () {
+		var html = tpl.innerHTML.replace( /__INDEX__/g, String( next++ ) );
+		list.insertAdjacentHTML( 'beforeend', html );
+	} );
+	list.addEventListener( 'click', function ( e ) {
+		var btn = e.target.closest( '.mfbe-rule-remove' );
+		if ( btn ) { btn.closest( '.mfbe-rule' ).remove(); }
+	} );
+}() );

@@ -25,7 +25,7 @@ class MFBE_Tag_Text extends Tag {
 	}
 
 	protected function register_controls() {
-		$this->register_field_control( array( 'text', 'textarea', 'number', 'email', 'url', 'select', 'radio', 'checkbox', 'switcher', 'date', 'color', 'wysiwyg' ) );
+		$this->register_field_control( array( 'text', 'textarea', 'number', 'email', 'url', 'select', 'radio', 'checkbox', 'switcher', 'date', 'time', 'datetime', 'range', 'link', 'color', 'wysiwyg' ) );
 		$this->add_control(
 			'fallback',
 			array(
@@ -69,7 +69,7 @@ class MFBE_Tag_Number extends Tag {
 	}
 
 	protected function register_controls() {
-		$this->register_field_control( array( 'number', 'text' ) );
+		$this->register_field_control( array( 'number', 'range', 'text' ) );
 		$this->add_control(
 			'fallback',
 			array(
@@ -109,7 +109,7 @@ class MFBE_Tag_URL extends Tag {
 	}
 
 	protected function register_controls() {
-		$this->register_field_control( array( 'url', 'email', 'image', 'text' ) );
+		$this->register_field_control( array( 'url', 'link', 'file', 'email', 'image', 'text' ) );
 		$this->add_control(
 			'fallback',
 			array(
@@ -124,8 +124,10 @@ class MFBE_Tag_URL extends Tag {
 
 		$url = '';
 		if ( $field && '' !== $value ) {
-			if ( 'image' === $field['type'] ) {
+			if ( in_array( $field['type'], array( 'image', 'file' ), true ) ) {
 				$url = (string) wp_get_attachment_url( absint( $value ) );
+			} elseif ( 'link' === $field['type'] ) {
+				$url = is_array( $value ) && isset( $value['url'] ) ? (string) $value['url'] : '';
 			} elseif ( 'email' === $field['type'] ) {
 				$url = 'mailto:' . sanitize_email( (string) $value );
 			} else {

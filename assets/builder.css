@@ -51,3 +51,5 @@
 .mfbe-shortcode-row > span { font-weight: 600; }
 .mfbe-shortcode-row code { direction: ltr; background: none; padding: 0; }
 .mfbe-shortcode-row .button { margin-inline-start: auto; }
+
+.mfbe-section-title { margin: 18px 0 8px; padding-top: 12px; border-top: 1px solid #e3e6ec; font-size: 13px; }

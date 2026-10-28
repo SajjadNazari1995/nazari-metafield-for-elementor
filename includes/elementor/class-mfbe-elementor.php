@@ -10,6 +10,9 @@ class MFBE_Elementor {
 		add_action( 'elementor/elements/categories_registered', array( __CLASS__, 'register_category' ) );
 		add_action( 'elementor/widgets/register', array( __CLASS__, 'register_widgets' ) );
 		add_action( 'elementor/dynamic_tags/register', array( __CLASS__, 'register_tags' ) );
+
+		require_once MFBE_PATH . 'includes/elementor/class-mfbe-visibility.php';
+		MFBE_Visibility::init();
 	}
 
 	public static function register_category( $elements_manager ) {
@@ -25,6 +28,9 @@ class MFBE_Elementor {
 	public static function register_widgets( $widgets_manager ) {
 		require_once MFBE_PATH . 'includes/elementor/class-mfbe-widget-field.php';
 		$widgets_manager->register( new MFBE_Widget_Field() );
+
+		require_once MFBE_PATH . 'includes/elementor/class-mfbe-widget-link.php';
+		$widgets_manager->register( new MFBE_Widget_Link() );
 	}
 
 	public static function register_tags( $tags_manager ) {

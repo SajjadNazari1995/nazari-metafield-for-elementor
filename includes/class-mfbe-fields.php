@@ -22,6 +22,12 @@ class MFBE_Fields {
 			'wysiwyg'  => __( 'WYSIWYG editor', 'nazari-metafield-for-elementor' ),
 			'image'    => __( 'Image', 'nazari-metafield-for-elementor' ),
 			'gallery'  => __( 'Gallery', 'nazari-metafield-for-elementor' ),
+			'file'     => __( 'File', 'nazari-metafield-for-elementor' ),
+			'link'     => __( 'Link (URL, text, new tab)', 'nazari-metafield-for-elementor' ),
+			'time'     => __( 'Time', 'nazari-metafield-for-elementor' ),
+			'datetime' => __( 'Date and time', 'nazari-metafield-for-elementor' ),
+			'oembed'   => __( 'Embed (video, tweet…)', 'nazari-metafield-for-elementor' ),
+			'range'    => __( 'Range slider', 'nazari-metafield-for-elementor' ),
 		);
 	}
 
@@ -38,6 +44,15 @@ class MFBE_Fields {
 			'min'         => '',
 			'max'         => '',
 			'step'        => '',
+			'required'    => '',
+			'min_length'  => '',
+			'max_length'  => '',
+			'unique'      => '',
+			'column'      => '',
+			'sortable'    => '',
+			'cond_field'  => '',
+			'cond_op'     => 'eq',
+			'cond_value'  => '',
 		);
 	}
 
@@ -64,6 +79,20 @@ class MFBE_Fields {
 
 		foreach ( array( 'min', 'max', 'step' ) as $key ) {
 			$field[ $key ] = is_numeric( $field[ $key ] ) ? (string) $field[ $key ] : '';
+		}
+
+		foreach ( array( 'required', 'unique', 'column', 'sortable' ) as $key ) {
+			$field[ $key ] = ( ! empty( $field[ $key ] ) && '0' !== (string) $field[ $key ] ) ? '1' : '';
+		}
+		foreach ( array( 'min_length', 'max_length' ) as $key ) {
+			$field[ $key ] = ctype_digit( (string) $field[ $key ] ) ? (string) $field[ $key ] : '';
+		}
+
+		$field['cond_field'] = self::sanitize_name( $field['cond_field'] );
+		$field['cond_op']    = MFBE_Conditions::sanitize_operator( $field['cond_op'] );
+		$field['cond_value'] = sanitize_text_field( $field['cond_value'] );
+		if ( $field['cond_field'] === $field['name'] ) {
+			$field['cond_field'] = '';
 		}
 
 		return $field;
@@ -105,6 +134,25 @@ class MFBE_Fields {
 	 * Admin rendering
 	 * ------------------------------------------------------------------ */
 
+	/**
+	* HTML attributes shared by the text-like inputs (already escaped).
+	*/
+	private static function input_attrs( array $f, $with_length = true ) {
+		$out = '';
+		if ( ! empty( $f['required'] ) ) {
+			$out .= ' required';
+		}
+		if ( $with_length ) {
+			if ( ! empty( $f['min_length'] ) ) {
+				$out .= ' minlength="' . esc_attr( $f['min_length'] ) . '"';
+			}
+			if ( ! empty( $f['max_length'] ) ) {
+				$out .= ' maxlength="' . esc_attr( $f['max_length'] ) . '"';
+			}
+		}
+		return $out;
+	}
+
 	public static function render( array $f, $value ) {
 		$name = $f['name'];
 		$id   = 'mfbe_' . $name;
@@ -115,11 +163,12 @@ class MFBE_Fields {
 
 			case 'textarea':
 				printf(
-					'<textarea id="%1$s" name="%2$s" rows="4" class="large-text" placeholder="%3$s">%4$s</textarea>',
+					'<textarea id="%1$s" name="%2$s" rows="4" class="large-text" placeholder="%3$s"%5$s>%4$s</textarea>',
 					esc_attr( $id ),
 					esc_attr( $in ),
 					esc_attr( $ph ),
-					esc_textarea( (string) $value )
+					esc_textarea( (string) $value ),
+					self::input_attrs( $f ) // phpcs:ignore WordPress.Security.EscapeOutput -- built from esc_attr() above.
 				);
 				break;
 
@@ -136,7 +185,7 @@ class MFBE_Fields {
 					esc_attr( $in ),
 					esc_attr( (string) $value ),
 					esc_attr( $ph ),
-					$attrs // phpcs:ignore WordPress.Security.EscapeOutput -- built from esc_attr() above.
+					$attrs . self::input_attrs( $f, false ) // phpcs:ignore WordPress.Security.EscapeOutput -- built from esc_attr() above.
 				);
 				break;
 
@@ -144,13 +193,22 @@ class MFBE_Fields {
 			case 'email':
 			case 'url':
 			case 'date':
+			case 'time':
+			case 'datetime':
+			case 'oembed':
+				$html_types = array(
+					'datetime' => 'datetime-local',
+					'oembed'   => 'url',
+				);
+				$html_type  = isset( $html_types[ $f['type'] ] ) ? $html_types[ $f['type'] ] : $f['type'];
 				printf(
-					'<input type="%1$s" id="%2$s" name="%3$s" value="%4$s" placeholder="%5$s" class="regular-text">',
-					esc_attr( $f['type'] ),
+					'<input type="%1$s" id="%2$s" name="%3$s" value="%4$s" placeholder="%5$s" class="regular-text"%6$s>',
+					esc_attr( $html_type ),
 					esc_attr( $id ),
 					esc_attr( $in ),
 					esc_attr( (string) $value ),
-					esc_attr( $ph )
+					esc_attr( $ph ),
+					self::input_attrs( $f, in_array( $f['type'], array( 'text', 'email', 'url' ), true ) ) // phpcs:ignore WordPress.Security.EscapeOutput -- built from esc_attr().
 				);
 				break;
 
@@ -164,7 +222,7 @@ class MFBE_Fields {
 				break;
 
 			case 'select':
-				printf( '<select id="%1$s" name="%2$s">', esc_attr( $id ), esc_attr( $in ) );
+				printf( '<select id="%1$s" name="%2$s"%3$s>', esc_attr( $id ), esc_attr( $in ), self::input_attrs( $f, false ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- built from esc_attr().
 				echo '<option value="">' . esc_html__( '— Select —', 'nazari-metafield-for-elementor' ) . '</option>';
 				foreach ( self::parse_options( $f['options'] ) as $key => $label ) {
 					printf(
@@ -225,6 +283,72 @@ class MFBE_Fields {
 						'media_buttons' => true,
 					)
 				);
+				break;
+
+			case 'range':
+				$min     = '' !== $f['min'] ? $f['min'] : '0';
+				$max     = '' !== $f['max'] ? $f['max'] : '100';
+				$step    = '' !== $f['step'] ? $f['step'] : '1';
+				$current = is_numeric( $value ) ? $value : $min;
+				printf(
+					'<div class="mfbe-range"><input type="range" id="%1$s" name="%2$s" value="%3$s" min="%4$s" max="%5$s" step="%6$s"><output>%3$s</output></div>',
+					esc_attr( $id ),
+					esc_attr( $in ),
+					esc_attr( (string) $current ),
+					esc_attr( $min ),
+					esc_attr( $max ),
+					esc_attr( $step )
+				);
+				break;
+
+			case 'file':
+				$attachment_id = absint( $value );
+				$file_path     = $attachment_id ? get_attached_file( $attachment_id ) : '';
+				echo '<div class="mfbe-file">';
+				printf(
+					'<input type="hidden" class="mfbe-file-input" name="%1$s" value="%2$s">',
+					esc_attr( $in ),
+					esc_attr( $attachment_id ? (string) $attachment_id : '' )
+				);
+				printf( '<span class="mfbe-file-name">%s</span> ', esc_html( $file_path ? wp_basename( $file_path ) : '' ) );
+				printf(
+					'<button type="button" class="button mfbe-file-add">%1$s</button> <button type="button" class="button-link mfbe-file-clear">%2$s</button>',
+					esc_html__( 'Select file', 'nazari-metafield-for-elementor' ),
+					esc_html__( 'Clear', 'nazari-metafield-for-elementor' )
+				);
+				echo '</div>';
+				break;
+
+			case 'link':
+				$link = wp_parse_args(
+					is_array( $value ) ? $value : array(),
+					array(
+						'url'    => '',
+						'text'   => '',
+						'target' => '',
+					)
+				);
+				echo '<div class="mfbe-link">';
+				printf(
+					'<input type="url" id="%1$s" name="%2$s[url]" value="%3$s" placeholder="https://" class="regular-text"%4$s>',
+					esc_attr( $id ),
+					esc_attr( $in ),
+					esc_attr( (string) $link['url'] ),
+					self::input_attrs( $f, false ) // phpcs:ignore WordPress.Security.EscapeOutput -- built from esc_attr().
+				);
+				printf(
+					'<input type="text" name="%1$s[text]" value="%2$s" placeholder="%3$s" class="regular-text">',
+					esc_attr( $in ),
+					esc_attr( (string) $link['text'] ),
+					esc_attr__( 'Link text', 'nazari-metafield-for-elementor' )
+				);
+				printf(
+					'<label class="mfbe-link-target"><input type="checkbox" name="%1$s[target]" value="_blank"%2$s> %3$s</label>',
+					esc_attr( $in ),
+					checked( '_blank', (string) $link['target'], false ),
+					esc_html__( 'Open in a new tab', 'nazari-metafield-for-elementor' )
+				);
+				echo '</div>';
 				break;
 
 			case 'image':
@@ -313,6 +437,42 @@ class MFBE_Fields {
 			case 'gallery':
 				return implode( ',', self::ids_from_value( $raw ) );
 
+			case 'time':
+				return ( is_string( $raw ) && preg_match( '/^([01]\d|2[0-3]):[0-5]\d$/', $raw ) ) ? $raw : '';
+
+			case 'datetime':
+				return ( is_string( $raw ) && preg_match( '/^\d{4}-\d{2}-\d{2}T([01]\d|2[0-3]):[0-5]\d$/', $raw ) ) ? $raw : '';
+
+			case 'oembed':
+				return esc_url_raw( (string) $raw );
+
+			case 'range':
+				if ( ! is_numeric( $raw ) ) {
+					return '';
+				}
+				$number = (float) $raw;
+				$low    = '' !== $f['min'] ? (float) $f['min'] : 0.0;
+				$high   = '' !== $f['max'] ? (float) $f['max'] : 100.0;
+				return (string) max( $low, min( $high, $number ) );
+
+			case 'file':
+				$file_id = absint( $raw );
+				return ( $file_id && 'attachment' === get_post_type( $file_id ) ) ? (string) $file_id : '';
+
+			case 'link':
+				if ( ! is_array( $raw ) ) {
+					return array();
+				}
+				$link_url = isset( $raw['url'] ) ? esc_url_raw( (string) $raw['url'] ) : '';
+				if ( '' === $link_url ) {
+					return array();
+				}
+				return array(
+					'url'    => $link_url,
+					'text'   => isset( $raw['text'] ) ? sanitize_text_field( (string) $raw['text'] ) : '',
+					'target' => ( isset( $raw['target'] ) && '_blank' === $raw['target'] ) ? '_blank' : '',
+				);
+
 			case 'text':
 			default:
 				return sanitize_text_field( (string) $raw );
@@ -378,6 +538,24 @@ class MFBE_Fields {
 					}
 				}
 				return implode( ', ', $urls );
+
+			case 'link':
+				if ( ! is_array( $value ) || empty( $value['url'] ) ) {
+					return '';
+				}
+				return '' !== (string) $value['text'] ? (string) $value['text'] : (string) $value['url'];
+
+			case 'file':
+				$file_url = wp_get_attachment_url( absint( $value ) );
+				return $file_url ? $file_url : '';
+
+			case 'time':
+				$time = date_create_from_format( 'H:i', (string) $value, wp_timezone() );
+				return $time ? wp_date( get_option( 'time_format' ), $time->getTimestamp() ) : '';
+
+			case 'datetime':
+				$datetime = date_create_from_format( 'Y-m-d\TH:i', (string) $value, wp_timezone() );
+				return $datetime ? wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $datetime->getTimestamp() ) : '';
 
 			case 'wysiwyg':
 				return wp_kses_post( (string) $value );
@@ -448,8 +626,133 @@ class MFBE_Fields {
 					$html
 				);
 
+			case 'link':
+				if ( ! is_array( $value ) || empty( $value['url'] ) ) {
+					return '';
+				}
+				$link_text = '' !== (string) $value['text'] ? (string) $value['text'] : (string) $value['url'];
+				$new_tab   = isset( $value['target'] ) && '_blank' === $value['target'];
+				return sprintf(
+					'<a href="%1$s"%2$s>%3$s</a>',
+					esc_url( (string) $value['url'] ),
+					$new_tab ? ' target="_blank" rel="noopener noreferrer"' : '',
+					esc_html( $link_text )
+				);
+
+			case 'file':
+				$file_id  = absint( $value );
+				$file_url = wp_get_attachment_url( $file_id );
+				if ( ! $file_url ) {
+					return '';
+				}
+				return sprintf( '<a href="%1$s" download>%2$s</a>', esc_url( $file_url ), esc_html( wp_basename( (string) get_attached_file( $file_id ) ) ) );
+
+			case 'oembed':
+				$embed = wp_oembed_get( (string) $value );
+				return $embed ? wp_kses( $embed, self::embed_kses() ) : '';
+
 			default:
 				return esc_html( self::to_text( $f, $value ) );
 		}
 	}
-}
+
+		/**
+		* Tags and attributes allowed in embed HTML (iframes, quotes, links).
+		*/
+		private static function embed_kses() {
+			$global = array(
+				'class' => true,
+				'id'    => true,
+				'style' => true,
+				'title' => true,
+				'data-*' => true,
+			);
+			return array(
+				'iframe'     => $global + array(
+					'src'             => true,
+					'width'           => true,
+					'height'          => true,
+					'frameborder'     => true,
+					'allow'           => true,
+					'allowfullscreen' => true,
+					'loading'         => true,
+					'referrerpolicy'  => true,
+					'sandbox'         => true,
+				),
+				'blockquote' => $global + array( 'cite' => true ),
+				'a'          => $global + array(
+					'href'   => true,
+					'target' => true,
+					'rel'    => true,
+				),
+				'p'          => $global,
+				'div'        => $global,
+				'span'       => $global,
+				'br'         => array(),
+			);
+		}
+
+		/**
+		* Does this clean value count as "nothing entered"?
+		*/
+		public static function is_empty_value( $value ) {
+			return MFBE_Conditions::is_empty_value( $value );
+		}
+
+		/**
+		* Server-side validation of an already sanitized value.
+		*
+		* @return string Error message, or '' when the value is fine.
+		*/
+		public static function validate( array $f, $value, $post_id ) {
+			$label = '' !== $f['label'] ? $f['label'] : $f['name'];
+
+			if ( self::is_empty_value( $value ) ) {
+				if ( ! empty( $f['required'] ) ) {
+					/* translators: %s: field label */
+					return sprintf( __( '“%s” is required.', 'nazari-metafield-for-elementor' ), $label );
+				}
+				return '';
+			}
+
+			if ( is_string( $value ) && in_array( $f['type'], array( 'text', 'textarea', 'email', 'url' ), true ) ) {
+				$length = function_exists( 'mb_strlen' ) ? mb_strlen( $value ) : strlen( $value );
+
+				if ( '' !== $f['min_length'] && $length < (int) $f['min_length'] ) {
+					/* translators: 1: field label, 2: minimum length */
+					return sprintf( __( '“%1$s” must be at least %2$d characters.', 'nazari-metafield-for-elementor' ), $label, (int) $f['min_length'] );
+				}
+				if ( '' !== $f['max_length'] && $length > (int) $f['max_length'] ) {
+					/* translators: 1: field label, 2: maximum length */
+					return sprintf( __( '“%1$s” must be at most %2$d characters.', 'nazari-metafield-for-elementor' ), $label, (int) $f['max_length'] );
+				}
+			}
+
+			if ( ! empty( $f['unique'] ) && is_string( $value ) && self::value_exists( $f['name'], $value, $post_id ) ) {
+				/* translators: %s: field label */
+				return sprintf( __( '“%s” must be unique: this value is already used by another post.', 'nazari-metafield-for-elementor' ), $label );
+			}
+
+			return '';
+		}
+
+		private static function value_exists( $key, $value, $post_id ) {
+			$query = new WP_Query(
+				array(
+					'post_type'      => array_keys( get_post_types( array( 'show_ui' => true ) ) ),
+					'post_status'    => 'any',
+					'posts_per_page' => 1,
+					'fields'         => 'ids',
+					'no_found_rows'  => true,
+					'post__not_in'   => array( (int) $post_id ),
+					'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- single indexed lookup, only for fields marked unique.
+						array(
+							'key'   => $key,
+							'value' => $value,
+						),
+					),
+				)
+			);
+			return $query->have_posts();
+		}
+	}

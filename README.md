@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.2-2f6bff">
+  <img alt="Version" src="https://img.shields.io/badge/version-1.2.0-2f6bff">
   <img alt="WordPress" src="https://img.shields.io/badge/WordPress-5.8%2B-21759b">
   <img alt="PHP" src="https://img.shields.io/badge/PHP-7.4%2B-777bb4">
   <img alt="License" src="https://img.shields.io/badge/license-GPL--2.0%2B-green">
@@ -25,7 +25,14 @@ Create custom field groups for posts, pages and custom post types from a visual 
 ## Features
 
 - **Visual field group builder**: drag to reorder, duplicate fields, collapse/expand, copy each field's shortcode.
-- **14 field types**: text, textarea, number, email, URL, select, radio, checkbox (multiple), switcher, date, color, WYSIWYG, image and gallery.
+- **20 field types**: text, textarea, number, email, URL, select, radio, checkbox (multiple), switcher, date, time, date and time, color, range, WYSIWYG, image, gallery, file, link and embed (oEmbed).
+- **Validation**: required, minimum/maximum length and unique values, with clear messages on save.
+- **Conditional logic**: show a field only when another field has a given value.
+- **Admin list columns**: show fields as columns in the post list, sortable, with filters for select / radio / switcher fields.
+- **Import / Export / Duplicate**: move field groups between sites as JSON, or copy a group in one click.
+- **Dynamic Visibility**: show or hide any Elementor section, column, container or widget by a meta field.
+- **Loop query rules**: filter and sort Posts / Loop Grid widgets (by Query ID) with a meta field, no code.
+- **Meta Field Link widget**: a button or link from a link, URL, email or file field.
 - **Meta boxes anywhere**: choose the post types, position (normal / side / advanced) and priority per group.
 - **Elementor widget**: the *Meta Field* widget works with free Elementor and has controls for text before/after, fallback, "hide when empty", HTML tag, image size, gallery columns/gap, alignment, color and typography.
 - **Dynamic tags** (Elementor Pro): Text, Number, URL, Color, Image and Gallery tags, grouped under "Meta Fields".
@@ -37,9 +44,13 @@ Create custom field groups for posts, pages and custom post types from a visual 
 
 ## Screenshots
 
-| Field group builder | Feedback form |
+| Field group builder | Meta box in the editor |
 | --- | --- |
-| ![Builder](screenshots/field-group-builder.png) | ![Feedback](screenshots/feedback.png) |
+| ![Builder](screenshots/field-group-builder.png) | ![Meta box](screenshots/meta-box.png) |
+
+| Loop query rules |
+| --- |
+| ![Loop queries](screenshots/loop-queries.png) |
 
 ## Requirements
 
@@ -115,6 +126,8 @@ $price = get_post_meta( get_the_ID(), 'price', true );
 
 **Nazari Metafield > Settings**
 
+- **Loop Queries**: rules for the Query ID option of Elementor Pro loops.
+- **Tools**: import / export field groups as JSON.
 - **General**: optionally delete field groups and settings when the plugin is deleted (values saved on posts are always kept).
 - **Feedback**: send criticism, ideas or bug reports to the author by email.
 - **About**: version, changelog and author information.
@@ -133,8 +146,12 @@ nazari-metafield-for-elementor/
 │   ├── class-mfbe-groups.php            # field group post type + builder UI
 │   ├── class-mfbe-metaboxes.php         # meta boxes on the edit screens
 │   ├── class-mfbe-shortcode.php
+│   ├── class-mfbe-columns.php           # admin list columns, sorting, filters
+│   ├── class-mfbe-tools.php             # import / export / duplicate
+│   ├── class-mfbe-queries.php           # loop query rules
+│   ├── class-mfbe-conditions.php        # shared condition logic
 │   ├── class-mfbe-admin.php             # menu, dashboard, settings, feedback
-│   └── elementor/                       # widget and dynamic tags
+│   └── elementor/                       # widgets, dynamic tags, visibility
 └── languages/                           # fa_IR translation
 ```
 
@@ -143,22 +160,34 @@ nazari-metafield-for-elementor/
 The repository root is the plugin folder. To produce an installable zip whose top-level folder has the right name:
 
 ```bash
-git tag v1.0.2
+git tag v1.2.0
 git archive --prefix=nazari-metafield-for-elementor/ \
-  -o nazari-metafield-for-elementor-1.0.2.zip v1.0.2
+  -o nazari-metafield-for-elementor-1.2.0.zip v1.2.0
 ```
 
 Attach the zip to a GitHub Release. Files marked `export-ignore` in `.gitattributes` (screenshots, README, …) are left out of the zip.
 
 ## Roadmap
 
-Ideas, not promises: repeater fields, conditional logic, relations between posts, a global options page. Open an issue if one of these matters to you.
+Ideas, not promises: repeater fields, relations between posts, a global options page. Open an issue if one of these matters to you.
 
 ## Feedback
 
 Found a bug or have an idea? Open an [issue](../../issues), or use **Nazari Metafield > Settings > Feedback** inside WordPress.
 
 ## Changelog
+
+### 1.2.0
+- Elementor: **Meta Field Visibility** on every section, column, container and widget (Advanced tab).
+- Elementor: loop query rules (Settings > Loop Queries) for the Query ID option of Posts / Loop Grid widgets.
+- Elementor: new **Meta Field Link** widget; Text, Number and URL dynamic tags understand the new field types.
+
+### 1.1.0
+- New field types: file, link, time, date and time, embed (oEmbed) and range.
+- Validation: required, min/max length, unique.
+- Conditional logic between fields.
+- Admin list columns (sortable) and filters.
+- JSON import / export and duplicate group (Settings > Tools).
 
 ### 1.0.2
 - New name and branding (logo, top-level menu, branded admin screens).
@@ -180,4 +209,4 @@ Found a bug or have an idea? Open an [issue](../../issues), or use **Nazari Meta
 
 The code is released under the [GPL-2.0-or-later](LICENSE).
 
-The Nazari Technologies name and logo (`assets/images/`) are the author's brand assets and are not covered by the GPL; please do not reuse them to promote derived products.
+The image files in `assets/images/` are distributed with the plugin under the same GPL-2.0-or-later license. The "Nazari Technologies" name and logo remain the author's trademarks: you may redistribute the plugin, but please do not use them to promote derived products.

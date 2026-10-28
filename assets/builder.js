@@ -44,6 +44,18 @@
 		return '<input type="' + ( type || 'text' ) + '" data-key="' + key + '" value="' + esc( value ) + '">';
 	}
 
+	function yesNo() {
+		return { '': t.no, '1': t.yes };
+	}
+
+	function condFieldSelect( current ) {
+		var html = '<select data-key="cond_field"><option value="">' + esc( t.condAlways ) + '</option>';
+		if ( current ) {
+			html += '<option value="' + esc( current ) + '" selected>' + esc( current ) + '</option>';
+		}
+		return html + '</select>';
+	}
+
 	function rowHtml( field ) {
 		return (
 			'<div class="mfbe-field">' +
@@ -78,6 +90,25 @@
 						'<p class="mfbe-num"><label>' + esc( t.max ) + inputHtml( 'max', field.max, 'number' ) + '</label></p>' +
 						'<p class="mfbe-num"><label>' + esc( t.step ) + inputHtml( 'step', field.step, 'number' ) + '</label></p>' +
 					'</div>' +
+					'<h4 class="mfbe-section-title">' + esc( t.sectionValidation ) + '</h4>' +
+					'<div class="mfbe-grid">' +
+						'<p><label>' + esc( t.required ) + selectHtml( 'required', yesNo(), field.required ) + '</label></p>' +
+						'<p><label>' + esc( t.unique ) + selectHtml( 'unique', yesNo(), field.unique ) + '</label></p>' +
+						'<p class="mfbe-len"><label>' + esc( t.minLength ) + inputHtml( 'min_length', field.min_length, 'number' ) + '</label></p>' +
+						'<p class="mfbe-len"><label>' + esc( t.maxLength ) + inputHtml( 'max_length', field.max_length, 'number' ) + '</label></p>' +
+					'</div>' +
+					'<h4 class="mfbe-section-title">' + esc( t.sectionAdmin ) + '</h4>' +
+					'<div class="mfbe-grid mfbe-list-opts">' +
+						'<p><label>' + esc( t.showColumn ) + selectHtml( 'column', yesNo(), field.column ) + '</label></p>' +
+						'<p><label>' + esc( t.sortable ) + selectHtml( 'sortable', yesNo(), field.sortable ) + '</label></p>' +
+						'<p class="mfbe-wide description">' + esc( t.columnHelp ) + '</p>' +
+					'</div>' +
+					'<h4 class="mfbe-section-title">' + esc( t.sectionLogic ) + '</h4>' +
+					'<div class="mfbe-grid">' +
+						'<p class="mfbe-wide"><label>' + esc( t.condField ) + condFieldSelect( field.cond_field ) + '</label></p>' +
+						'<p class="mfbe-cond"><label>' + esc( t.condOp ) + selectHtml( 'cond_op', cfg.operators, field.cond_op ) + '</label></p>' +
+						'<p class="mfbe-cond mfbe-cond-value"><label>' + esc( t.condValue ) + inputHtml( 'cond_value', field.cond_value ) + '</label></p>' +
+					'</div>' +
 				'</div>' +
 			'</div>'
 		);
@@ -86,7 +117,9 @@
 	function defaults() {
 		return {
 			label: '', name: '', type: 'text', description: '', placeholder: '',
-			default: '', options: '', width: '100', min: '', max: '', step: ''
+			default: '', options: '', width: '100', min: '', max: '', step: '',
+			required: '', unique: '', min_length: '', max_length: '', column: '', sortable: '',
+			cond_field: '', cond_op: 'eq', cond_value: ''
 		};
 	}
 
@@ -105,11 +138,45 @@
 		$row.find( '.mfbe-field-type' ).text( cfg.types[ type ] || type );
 		$row.find( '.mfbe-type-icon' ).attr( 'class', 'dashicons mfbe-type-icon dashicons-' + ( cfg.icons[ type ] || 'admin-generic' ) );
 		$row.find( '.mfbe-opt' ).toggle( $.inArray( type, cfg.optionTypes ) !== -1 );
-		$row.find( '.mfbe-num' ).toggle( type === 'number' );
+		$row.find( '.mfbe-num' ).toggle( $.inArray( type, cfg.numberTypes ) !== -1 );
+		$row.find( '.mfbe-len' ).toggle( $.inArray( type, cfg.lengthTypes ) !== -1 );
+		$row.find( '.mfbe-list-opts' ).toggle( $.inArray( type, cfg.listTypes ) !== -1 );
+
+		var hasCondition = !! $row.find( '[data-key="cond_field"]' ).val();
+		var op = $row.find( '[data-key="cond_op"]' ).val();
+		$row.find( '.mfbe-cond' ).toggle( hasCondition );
+		$row.find( '.mfbe-cond-value' ).toggle( hasCondition && op !== 'empty' && op !== 'not_empty' );
 
 		var key = slug( name );
 		$row.find( '.mfbe-shortcode' ).text( key ? '[mfbe field="' + key + '"]' : '—' );
 		$row.find( '.mfbe-copy' ).prop( 'disabled', ! key );
+	}
+
+	function refreshConds() {
+		var names = [];
+		$list.children().each( function () {
+			var name = slug( $( this ).find( '[data-key="name"]' ).val() );
+			if ( name ) {
+				names.push( name );
+			}
+		} );
+
+		$list.children().each( function () {
+			var $row = $( this );
+			var $select = $row.find( '[data-key="cond_field"]' );
+			var self = slug( $row.find( '[data-key="name"]' ).val() );
+			var current = $select.val();
+			var html = '<option value="">' + esc( t.condAlways ) + '</option>';
+
+			$.each( names, function ( i, name ) {
+				if ( name !== self ) {
+					html += '<option value="' + esc( name ) + '"' + ( name === current ? ' selected' : '' ) + '>' + esc( name ) + '</option>';
+				}
+			} );
+
+			$select.html( html );
+			refreshRow( $row );
+		} );
 	}
 
 	function refreshEmpty() {
@@ -172,7 +239,7 @@
 		$tmp.remove();
 	}
 
-	$list.sortable( { handle: '.mfbe-handle', axis: 'y', tolerance: 'pointer' } );
+	$list.sortable( { handle: '.mfbe-handle', axis: 'y', tolerance: 'pointer', stop: refreshConds } );
 
 	$list.on( 'input change', '[data-key]', function () {
 		var $row = $( this ).closest( '.mfbe-field' );
@@ -185,6 +252,9 @@
 			$row.find( '[data-key="name"]' ).val( slug( $( this ).val() ) );
 		}
 		refreshRow( $row );
+		if ( key === 'name' || key === 'label' ) {
+			refreshConds();
+		}
 	} );
 
 	$list.on( 'blur', '[data-key="name"]', function () {
@@ -224,6 +294,7 @@
 		var $new = addRow( data, true );
 		$new.data( 'auto', false );
 		$new.insertAfter( $row );
+		refreshConds();
 		$new.find( '[data-key="label"]' ).trigger( 'focus' );
 	} );
 
@@ -231,11 +302,13 @@
 		if ( window.confirm( t.confirmRemove ) ) {
 			$( this ).closest( '.mfbe-field' ).remove();
 			refreshEmpty();
+			refreshConds();
 		}
 	} );
 
 	$( '#mfbe-add-field' ).on( 'click', function () {
 		var $row = addRow( null, true );
+		refreshConds();
 		$row.find( '[data-key="label"]' ).trigger( 'focus' );
 	} );
 
@@ -287,5 +360,6 @@
 	$.each( cfg.fields || [], function ( i, field ) {
 		addRow( field, false );
 	} );
+	refreshConds();
 	refreshEmpty();
 }( jQuery ) );

@@ -3,7 +3,7 @@
  * Plugin Name:       Nazari Metafield For Elementor
  * Plugin URI:        https://sajjadnazari.com
  * Description:       Build custom meta boxes (field groups) for posts and custom post types, then use the fields inside Elementor through a dedicated widget and dynamic tags. A lightweight JetEngine-style meta box builder.
- * Version:           1.0.2
+ * Version:           1.2.0
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            Sajjad Nazari
@@ -32,7 +32,7 @@ if ( defined( 'MFBE_FILE' ) ) {
 	return;
 }
 
-define( 'MFBE_VERSION', '1.0.2' );
+define( 'MFBE_VERSION', '1.2.0' );
 define( 'MFBE_FILE', __FILE__ );
 define( 'MFBE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'MFBE_URL', plugin_dir_url( __FILE__ ) );

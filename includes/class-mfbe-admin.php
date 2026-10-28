@@ -376,6 +376,12 @@ class MFBE_Admin {
 			'wysiwyg'  => 'dashicons-edit',
 			'image'    => 'dashicons-format-image',
 			'gallery'  => 'dashicons-format-gallery',
+			'file'     => 'dashicons-media-default',
+			'link'     => 'dashicons-admin-links',
+			'time'     => 'dashicons-clock',
+			'datetime' => 'dashicons-calendar',
+			'oembed'   => 'dashicons-video-alt3',
+			'range'    => 'dashicons-image-flip-horizontal',
 		);
 		return isset( $icons[ $type ] ) ? $icons[ $type ] : 'dashicons-admin-generic';
 	}
@@ -390,6 +396,9 @@ class MFBE_Admin {
 			'sent'    => array( 'success', __( 'Thank you! Your message was sent.', 'nazari-metafield-for-elementor' ) ),
 			'short'   => array( 'error', __( 'Please write a little more (at least 10 characters).', 'nazari-metafield-for-elementor' ) ),
 			'toofast' => array( 'error', __( 'You just sent a message. Please wait a minute before sending another one.', 'nazari-metafield-for-elementor' ) ),
+			'imported'       => array( 'success', __( 'Field groups imported.', 'nazari-metafield-for-elementor' ) ),
+			'import_empty'   => array( 'error', __( 'No valid field groups were found in that file.', 'nazari-metafield-for-elementor' ) ),
+			'import_invalid' => array( 'error', __( 'Please choose a valid JSON file exported from this plugin (max 1 MB).', 'nazari-metafield-for-elementor' ) ),
 			'failed'  => array( 'error', __( 'The email could not be sent from this server. Your text is kept below; please try again later or write to me directly.', 'nazari-metafield-for-elementor' ) ),
 		);
 	}
@@ -401,6 +410,8 @@ class MFBE_Admin {
 
 		$tabs = array(
 			'general'  => array( __( 'General', 'nazari-metafield-for-elementor' ), 'dashicons-admin-generic' ),
+			'queries'  => array( __( 'Loop Queries', 'nazari-metafield-for-elementor' ), 'dashicons-filter' ),
+			'tools'    => array( __( 'Tools', 'nazari-metafield-for-elementor' ), 'dashicons-admin-tools' ),
 			'feedback' => array( __( 'Feedback', 'nazari-metafield-for-elementor' ), 'dashicons-email-alt' ),
 			'about'    => array( __( 'About', 'nazari-metafield-for-elementor' ), 'dashicons-info-outline' ),
 		);
@@ -428,7 +439,11 @@ class MFBE_Admin {
 			</nav>
 
 			<?php
-			if ( 'feedback' === $tab ) {
+			if ( 'queries' === $tab ) {
+				MFBE_Queries::render_tab();
+			} elseif ( 'tools' === $tab ) {
+				MFBE_Tools::render_tab();
+			} elseif ( 'feedback' === $tab ) {
 				self::render_feedback_tab();
 			} elseif ( 'about' === $tab ) {
 				self::render_about_tab();
@@ -561,6 +576,16 @@ class MFBE_Admin {
 
 	private static function render_about_tab() {
 		$changelog = array(
+			'1.2.0' => array(
+				__( 'Elementor: show or hide any element by a meta field (Meta Field Visibility, in the Advanced tab).', 'nazari-metafield-for-elementor' ),
+				__( 'Elementor: loop query rules by Query ID, and the Meta Field Link widget.', 'nazari-metafield-for-elementor' ),
+				__( 'Dynamic tags now understand the new field types.', 'nazari-metafield-for-elementor' ),
+			),
+			'1.1.0' => array(
+				__( 'Six new field types: file, link, time, date and time, embed and range.', 'nazari-metafield-for-elementor' ),
+				__( 'Validation (required, length, unique) and conditional logic.', 'nazari-metafield-for-elementor' ),
+				__( 'Admin list columns with sorting and filters, JSON import/export and duplicate group.', 'nazari-metafield-for-elementor' ),
+			),
 			'1.0.2' => array(
 				__( 'New name and branding.', 'nazari-metafield-for-elementor' ),
 				__( 'Dashboard, settings page and feedback form.', 'nazari-metafield-for-elementor' ),

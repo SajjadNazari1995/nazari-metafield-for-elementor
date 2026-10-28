@@ -127,11 +127,26 @@ msgstr "لطفاً کمی بیشتر بنویسید (حداقل ۱۰ نویسه)
 msgid "You just sent a message. Please wait a minute before sending another one."
 msgstr "همین الان یک پیام فرستادید. لطفاً یک دقیقه صبر کنید و دوباره امتحان کنید."
 
+msgid "Field groups imported."
+msgstr "گروه‌های فیلد وارد شدند."
+
+msgid "No valid field groups were found in that file."
+msgstr "هیچ گروه فیلد معتبری در این فایل پیدا نشد."
+
+msgid "Please choose a valid JSON file exported from this plugin (max 1 MB)."
+msgstr "لطفاً یک فایل JSON معتبر که از همین افزونه خروجی گرفته شده انتخاب کنید (حداکثر ۱ مگابایت)."
+
 msgid "The email could not be sent from this server. Your text is kept below; please try again later or write to me directly."
 msgstr "ایمیل از این سرور ارسال نشد. متن شما پایین نگه داشته شده؛ لطفاً بعداً دوباره امتحان کنید یا مستقیم به من ایمیل بزنید."
 
 msgid "General"
 msgstr "عمومی"
+
+msgid "Loop Queries"
+msgstr "کوئری لوپ"
+
+msgid "Tools"
+msgstr "ابزارها"
 
 msgid "Feedback"
 msgstr "بازخورد"
@@ -180,6 +195,24 @@ msgstr "بعد از ارسال چه می‌شود؟"
 
 msgid "Your message is emailed to the plugin author. If you leave your email address, you may get a reply."
 msgstr "پیام شما برای نویسندهٔ افزونه ایمیل می‌شود. اگر ایمیل خود را بنویسید، ممکن است پاسخ بگیرید."
+
+msgid "Elementor: show or hide any element by a meta field (Meta Field Visibility, in the Advanced tab)."
+msgstr "المنتور: نمایش یا مخفی کردن هر المان بر اساس متا فیلد (نمایش متا فیلد، در تب پیشرفته)."
+
+msgid "Elementor: loop query rules by Query ID, and the Meta Field Link widget."
+msgstr "المنتور: قوانین کوئری لوپ بر اساس شناسه کوئری و ویجت لینک متا فیلد."
+
+msgid "Dynamic tags now understand the new field types."
+msgstr "تگ‌های داینامیک اکنون نوع‌های جدید فیلد را پشتیبانی می‌کنند."
+
+msgid "Six new field types: file, link, time, date and time, embed and range."
+msgstr "شش نوع فیلد جدید: فایل، لینک، ساعت، تاریخ و ساعت، جاسازی و اسلایدر محدوده."
+
+msgid "Validation (required, length, unique) and conditional logic."
+msgstr "اعتبارسنجی (اجباری، طول، یکتا) و منطق شرطی."
+
+msgid "Admin list columns with sorting and filters, JSON import/export and duplicate group."
+msgstr "ستون‌های لیست مدیریت با مرتب‌سازی و فیلتر، درون‌ریزی/برون‌بری JSON و کپی گروه."
 
 msgid "New name and branding."
 msgstr "نام و برند جدید."
@@ -232,6 +265,39 @@ msgstr "درخواست قابلیت"
 msgid "Other"
 msgstr "سایر"
 
+msgid "Images: %s"
+msgstr "تصاویر: %s"
+
+msgid "Yes"
+msgstr "بله"
+
+msgid "No"
+msgstr "خیر"
+
+msgid "All: %s"
+msgstr "همه: %s"
+
+msgid "equals"
+msgstr "برابر است با"
+
+msgid "does not equal"
+msgstr "برابر نیست با"
+
+msgid "is not empty"
+msgstr "خالی نیست"
+
+msgid "is empty"
+msgstr "خالی است"
+
+msgid "contains"
+msgstr "شامل"
+
+msgid "is greater than"
+msgstr "بزرگ‌تر از"
+
+msgid "is less than"
+msgstr "کوچک‌تر از"
+
 msgid "Text"
 msgstr "متن"
 
@@ -274,8 +340,38 @@ msgstr "تصویر"
 msgid "Gallery"
 msgstr "گالری"
 
+msgid "File"
+msgstr "فایل"
+
+msgid "Link (URL, text, new tab)"
+msgstr "لینک (نشانی، متن، تب جدید)"
+
+msgid "Time"
+msgstr "ساعت"
+
+msgid "Date and time"
+msgstr "تاریخ و ساعت"
+
+msgid "Embed (video, tweet…)"
+msgstr "جاسازی (ویدیو، توییت…)"
+
+msgid "Range slider"
+msgstr "اسلایدر محدوده"
+
 msgid "— Select —"
 msgstr "— انتخاب کنید —"
+
+msgid "Select file"
+msgstr "انتخاب فایل"
+
+msgid "Clear"
+msgstr "پاک کردن"
+
+msgid "Link text"
+msgstr "متن لینک"
+
+msgid "Open in a new tab"
+msgstr "باز شدن در تب جدید"
 
 msgid "Remove"
 msgstr "حذف"
@@ -286,14 +382,17 @@ msgstr "انتخاب تصاویر"
 msgid "Select image"
 msgstr "انتخاب تصویر"
 
-msgid "Clear"
-msgstr "پاک کردن"
+msgid "“%s” is required."
+msgstr "«%s» الزامی است."
 
-msgid "Yes"
-msgstr "بله"
+msgid "“%1$s” must be at least %2$d characters."
+msgstr "«%1$s» باید حداقل %2$d نویسه باشد."
 
-msgid "No"
-msgstr "خیر"
+msgid "“%1$s” must be at most %2$d characters."
+msgstr "«%1$s» باید حداکثر %2$d نویسه باشد."
+
+msgid "“%s” must be unique: this value is already used by another post."
+msgstr "«%s» باید یکتا باشد: این مقدار قبلاً در نوشته دیگری استفاده شده است."
 
 msgid "Field Group"
 msgstr "گروه فیلد"
@@ -430,6 +529,48 @@ msgstr "حداکثر"
 msgid "Step"
 msgstr "گام"
 
+msgid "Validation"
+msgstr "اعتبارسنجی"
+
+msgid "Admin list"
+msgstr "لیست مدیریت"
+
+msgid "Conditional logic"
+msgstr "منطق شرطی"
+
+msgid "Required"
+msgstr "اجباری"
+
+msgid "Unique value"
+msgstr "مقدار یکتا"
+
+msgid "Min length"
+msgstr "حداقل طول"
+
+msgid "Max length"
+msgstr "حداکثر طول"
+
+msgid "Show as a column"
+msgstr "نمایش به صورت ستون"
+
+msgid "Sortable column"
+msgstr "ستون قابل مرتب‌سازی"
+
+msgid "Show this field only if"
+msgstr "این فیلد فقط وقتی نمایش داده شود که"
+
+msgid "— Always show —"
+msgstr "— همیشه نمایش —"
+
+msgid "Condition"
+msgstr "شرط"
+
+msgid "Value"
+msgstr "مقدار"
+
+msgid "Columns appear in the list of posts. Select, radio and switcher columns also get a filter dropdown."
+msgstr "ستون‌ها در لیست نوشته‌ها نمایش داده می‌شوند. ستون‌های انتخاب، رادیویی و سوئیچ یک لیست فیلتر هم دارند."
+
 msgid "Duplicate"
 msgstr "کپی فیلد"
 
@@ -442,8 +583,47 @@ msgstr "هر فیلد باید یک کلید متای یکتا داشته باش
 msgid "Post types"
 msgstr "انواع نوشته"
 
+msgid "Some fields were not saved:"
+msgstr "بعضی فیلدها ذخیره نشدند:"
+
 msgid "Use selected"
 msgstr "استفاده از انتخاب‌شده"
+
+msgid "Keep default order"
+msgstr "ترتیب پیش‌فرض"
+
+msgid "Field value, ascending"
+msgstr "مقدار فیلد، صعودی"
+
+msgid "Field value, descending"
+msgstr "مقدار فیلد، نزولی"
+
+msgid "Query ID"
+msgstr "شناسه کوئری (Query ID)"
+
+msgid "Field"
+msgstr "فیلد"
+
+msgid "Order"
+msgstr "ترتیب"
+
+msgid "Loop query rules"
+msgstr "قوانین کوئری لوپ"
+
+msgid "Filter and sort an Elementor Posts or Loop Grid widget by a meta field. In the widget, open Query and type the same Query ID."
+msgstr "ویجت پست‌ها یا Loop Grid المنتور را بر اساس یک متا فیلد فیلتر و مرتب کنید. در ویجت، بخش Query را باز کنید و همین شناسه کوئری را بنویسید."
+
+msgid "Add rule"
+msgstr "افزودن قانون"
+
+msgid "Save rules"
+msgstr "ذخیره قوانین"
+
+msgid "Good to know"
+msgstr "خوب است بدانید"
+
+msgid "The Query ID option is part of Elementor Pro (Posts, Portfolio and Loop Grid widgets). Several rules can share one Query ID; all of them apply."
+msgstr "گزینه Query ID بخشی از المنتور پرو است (ویجت‌های پست‌ها، نمونه‌کار و Loop Grid). چند قانون می‌توانند یک شناسه کوئری مشترک داشته باشند و همه اعمال می‌شوند."
 
 msgid "— Select a field —"
 msgstr "— یک فیلد انتخاب کنید —"
@@ -451,14 +631,65 @@ msgstr "— یک فیلد انتخاب کنید —"
 msgid "%1$s: %2$s"
 msgstr "%1$s: %2$s"
 
+msgid "Export"
+msgstr "خروجی"
+
+msgid "Imported group"
+msgstr "گروه واردشده"
+
+msgid "(copy)"
+msgstr "(کپی)"
+
+msgid "Export field groups"
+msgstr "خروجی گرفتن از گروه‌های فیلد"
+
+msgid "Download all your field groups as a JSON file. Use it as a backup or to move them to another site."
+msgstr "همه گروه‌های فیلد را به صورت فایل JSON دانلود کنید. برای پشتیبان‌گیری یا انتقال به سایت دیگر."
+
+msgid "Download JSON"
+msgstr "دانلود JSON"
+
+msgid "Import field groups"
+msgstr "درون‌ریزی گروه‌های فیلد"
+
+msgid "Choose a JSON file exported from this plugin. Groups that reuse the meta keys of an existing group are imported as drafts so nothing is overwritten."
+msgstr "یک فایل JSON که از این افزونه خروجی گرفته شده انتخاب کنید. گروه‌هایی که از متا کی‌های یک گروه موجود استفاده کنند به صورت پیش‌نویس وارد می‌شوند تا چیزی بازنویسی نشود."
+
+msgid "JSON file"
+msgstr "فایل JSON"
+
+msgid "Import"
+msgstr "درون‌ریزی"
+
+msgid "Tip"
+msgstr "نکته"
+
+msgid "In the list of field groups, hover a row to Duplicate or Export just that group."
+msgstr "در لیست گروه‌های فیلد، ماوس را روی یک ردیف ببرید تا همان گروه را کپی یا خروجی بگیرید."
+
 msgid "Meta Fields"
 msgstr "متا فیلدها"
 
+msgid "Meta Field Visibility"
+msgstr "نمایش متا فیلد"
+
+msgid "Enable"
+msgstr "فعال‌سازی"
+
+msgid "Action"
+msgstr "عملیات"
+
+msgid "Show this element if…"
+msgstr "این المان نمایش داده شود اگر…"
+
+msgid "Hide this element if…"
+msgstr "این المان مخفی شود اگر…"
+
+msgid "The element is always visible while you edit in Elementor."
+msgstr "هنگام ویرایش در المنتور، المان همیشه نمایش داده می‌شود."
+
 msgid "Meta Field"
 msgstr "متا فیلد"
-
-msgid "Field"
-msgstr "فیلد"
 
 msgid "Source"
 msgstr "منبع"
@@ -525,6 +756,36 @@ msgstr "در تنظیمات ویجت یک فیلد انتخاب کنید."
 
 msgid "This field is empty for the current post."
 msgstr "این فیلد برای نوشتهٔ جاری خالی است."
+
+msgid "Meta Field Link"
+msgstr "لینک متا فیلد"
+
+msgid "Link"
+msgstr "لینک"
+
+msgid "Button text"
+msgstr "متن دکمه"
+
+msgid "Leave empty to use the link text (or the URL)."
+msgstr "خالی بگذارید تا از متن لینک (یا نشانی) استفاده شود."
+
+msgid "Open in new tab"
+msgstr "باز شدن در تب جدید"
+
+msgid "Show as button"
+msgstr "نمایش به صورت دکمه"
+
+msgid "Background color"
+msgstr "رنگ پس‌زمینه"
+
+msgid "Padding"
+msgstr "فاصله داخلی"
+
+msgid "Border radius"
+msgstr "گردی گوشه‌ها"
+
+msgid "Select a link field. Nothing to show for this post yet."
+msgstr "یک فیلد لینک انتخاب کنید. هنوز چیزی برای نمایش در این نوشته نیست."
 
 msgid "Meta Field (Text)"
 msgstr "متا فیلد (متن)"

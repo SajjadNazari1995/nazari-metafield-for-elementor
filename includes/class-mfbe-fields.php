@@ -66,7 +66,13 @@ class MFBE_Fields {
 	 * Clean a field definition coming from the builder (or from the database).
 	 */
 	public static function normalize( $field ) {
-		$field = wp_parse_args( is_array( $field ) ? $field : array(), self::defaults() );
+		$defaults = self::defaults();
+		$field    = wp_parse_args( is_array( $field ) ? $field : array(), $defaults );
+		// Keep only the known properties, as plain strings.
+		$field = array_intersect_key( $field, $defaults );
+		foreach ( $field as $key => $value ) {
+			$field[ $key ] = is_scalar( $value ) ? (string) $value : '';
+		}
 
 		$field['name']        = self::sanitize_name( $field['name'] );
 		$field['label']       = sanitize_text_field( $field['label'] );

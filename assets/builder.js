@@ -1,4 +1,4 @@
-/* Nazari Metafield For Elementor — field group builder */
+/* Elementor Metafield — field group builder */
 ( function ( $ ) {
 	'use strict';
 

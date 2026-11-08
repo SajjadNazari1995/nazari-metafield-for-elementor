@@ -1,18 +1,20 @@
-=== Nazari Metafield For Elementor ===
+=== Elementor Metafield ===
 Contributors: sajjadnazari
-Tags: custom fields, meta box, elementor, dynamic tags, metabox
+Tags: custom fields, meta box, elementor, meta field, dynamic tags
 Requires at least: 5.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Build custom meta boxes (field groups) for posts and custom post types, and use the fields in Elementor with a widget, dynamic tags or a shortcode.
+Elementor Metafield (متا فیلد المنتور): visual meta box builder, 20 field types, Elementor widgets, dynamic tags and conditional logic. Works with or without Elementor.
 
 == Description ==
 
-Nazari Metafield For Elementor is a lightweight, JetEngine-style meta box builder. Create field groups from a visual builder, fill them in on the post edit screen, and show the values anywhere in Elementor.
+Elementor Metafield is a lightweight, JetEngine-style meta box builder that works with or without Elementor (without it, show values with a shortcode). Create field groups from a visual builder, fill them in on the post edit screen, and show the values anywhere in Elementor.
+
+**متا فیلد المنتور (فارسی):** سازنده متاباکس و فیلد سفارشی برای وردپرس با پشتیبانی کامل از المنتور: ویجت، تگ‌های داینامیک، شورت‌کد، منطق شرطی و اعتبارسنجی. رابط افزونه فارسی و راست‌چین است.
 
 **Features**
 
@@ -39,7 +41,7 @@ Nazari Metafield For Elementor is a lightweight, JetEngine-style meta box builde
 
 1. Upload the plugin folder to `/wp-content/plugins/`, or install the zip from Plugins > Add New > Upload Plugin.
 2. Activate the plugin.
-3. Open "Nazari Metafield" in the admin menu and create your first field group.
+3. Open "Elementor Metafield" in the admin menu and create your first field group.
 
 If the older "Meta Fields for Elementor" 1.0.0 is active, it is deactivated automatically. Your field groups and saved values are kept.
 
@@ -70,10 +72,17 @@ Nothing, unless you enable "Delete data on uninstall" in the settings. Even then
 
 == Upgrade Notice ==
 
+= 1.2.1 =
+Renamed to Elementor Metafield and hardened input cleaning. Your data is untouched.
+
 = 1.2.0 =
 Adds 6 field types, validation, conditional logic, admin columns, import/export and new Elementor features. Existing data is untouched.
 
 == Changelog ==
+
+= 1.2.1 =
+* Renamed to Elementor Metafield (Persian: متا فیلد المنتور). Works with or without Elementor.
+* Security: stricter cleaning of saved field definitions; the menu icon style is now enqueued.
 
 = 1.2.0 =
 * Elementor: Meta Field Visibility on sections, columns, containers and widgets.

@@ -228,9 +228,11 @@ class MFBE_Groups {
 		$fields = array();
 		$seen   = array();
 		if ( isset( $_POST['mfbe_fields_json'] ) ) {
-			$decoded = json_decode( wp_unslash( $_POST['mfbe_fields_json'] ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput -- each field is normalized below.
+			$json    = sanitize_textarea_field( wp_unslash( $_POST['mfbe_fields_json'] ) );
+			$decoded = json_decode( $json, true );
 			if ( is_array( $decoded ) ) {
-				foreach ( $decoded as $field ) {
+				// Every field is rebuilt from known keys only (see MFBE_Fields::normalize()).
+				foreach ( array_slice( $decoded, 0, 200 ) as $field ) {
 					$field = MFBE_Fields::normalize( $field );
 					if ( '' === $field['name'] || isset( $seen[ $field['name'] ] ) ) {
 						continue;

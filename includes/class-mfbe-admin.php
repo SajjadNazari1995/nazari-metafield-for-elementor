@@ -11,13 +11,13 @@ class MFBE_Admin {
 	const OPTION      = 'mfbe_settings';
 	const FEEDBACK_TO = 'sajjadnazari.ir@gmail.com';
 	const AUTHOR      = 'Sajjad Nazari';
-	const AUTHOR_URL  = 'https://sajjadnazari.com';
+	const AUTHOR_URL  = 'https://github.com/SajjadNazari1995';
 
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'menu' ), 5 );
 		add_action( 'admin_menu', array( __CLASS__, 'menu_settings' ), 99 );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue' ) );
-		add_action( 'admin_head', array( __CLASS__, 'menu_icon_css' ) );
+		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'menu_icon_css' ) );
 		add_action( 'in_admin_header', array( __CLASS__, 'brand_bar' ) );
 		add_action( 'admin_post_mfbe_feedback', array( __CLASS__, 'handle_feedback' ) );
 		add_action( 'admin_post_mfbe_save_settings', array( __CLASS__, 'handle_settings' ) );
@@ -68,8 +68,8 @@ class MFBE_Admin {
 
 	public static function menu() {
 		add_menu_page(
-			__( 'Nazari Metafield', 'nazari-metafield-for-elementor' ),
-			__( 'Nazari Metafield', 'nazari-metafield-for-elementor' ),
+			__( 'Elementor Metafield', 'nazari-metafield-for-elementor' ),
+			__( 'Elementor Metafield', 'nazari-metafield-for-elementor' ),
 			'manage_options',
 			self::SLUG,
 			array( __CLASS__, 'render_dashboard' ),
@@ -119,7 +119,7 @@ class MFBE_Admin {
 		}
 		return sprintf(
 			/* translators: %s: author link */
-			esc_html__( 'Nazari Metafield For Elementor — made by %s', 'nazari-metafield-for-elementor' ),
+			esc_html__( 'Elementor Metafield — made by %s', 'nazari-metafield-for-elementor' ),
 			'<a href="' . esc_url( self::AUTHOR_URL ) . '" target="_blank" rel="noopener">' . esc_html( self::AUTHOR ) . '</a>'
 		);
 	}
@@ -129,23 +129,11 @@ class MFBE_Admin {
 	 * (including hover / active / admin colour schemes) as the built-in font icons.
 	 */
 	public static function menu_icon_css() {
-		$url = esc_url( MFBE_URL . 'assets/images/menu-icon.png' );
-		?>
-		<style id="mfbe-menu-icon">
-			#adminmenu .toplevel_page_nazari-metafield div.wp-menu-image:before {
-				content: "";
-				display: block;
-				width: 20px;
-				height: 20px;
-				margin: 0 auto;
-				padding: 7px 0;
-				box-sizing: content-box;
-				background-color: currentColor;
-				-webkit-mask: url( "<?php echo $url; // phpcs:ignore WordPress.Security.EscapeOutput -- escaped above. ?>" ) center / 20px 20px no-repeat content-box;
-				mask: url( "<?php echo $url; // phpcs:ignore WordPress.Security.EscapeOutput -- escaped above. ?>" ) center / 20px 20px no-repeat content-box;
-			}
-		</style>
-		<?php
+		$url = esc_url_raw( MFBE_URL . 'assets/images/menu-icon.png' );
+		$css = '#adminmenu .toplevel_page_nazari-metafield div.wp-menu-image:before{content:"";display:block;width:20px;height:20px;margin:0 auto;padding:7px 0;box-sizing:content-box;background-color:currentColor;-webkit-mask:url("' . $url . '") center / 20px 20px no-repeat content-box;mask:url("' . $url . '") center / 20px 20px no-repeat content-box;}';
+		wp_register_style( 'mfbe-menu-icon', false, array(), MFBE_VERSION );
+		wp_enqueue_style( 'mfbe-menu-icon' );
+		wp_add_inline_style( 'mfbe-menu-icon', $css );
 	}
 
 	/* ------------------------------------------------------------------ *
@@ -185,8 +173,8 @@ class MFBE_Admin {
 		<div class="mfbe-brandbar">
 			<img class="mfbe-brandbar-logo" src="<?php echo esc_url( self::logo( true ) ); ?>" alt="">
 			<div class="mfbe-brandbar-title">
-				<strong>Nazari Metafield</strong>
-				<span>For Elementor</span>
+				<strong><?php esc_html_e( 'Elementor Metafield', 'nazari-metafield-for-elementor' ); ?></strong>
+				<span>Nazari Technologies</span>
 			</div>
 			<span class="mfbe-badge">v<?php echo esc_html( MFBE_VERSION ); ?></span>
 			<nav class="mfbe-brandbar-nav">
@@ -219,7 +207,7 @@ class MFBE_Admin {
 		$type_labels   = MFBE_Groups::selectable_post_types();
 		?>
 		<div class="wrap mfbe-wrap">
-			<h1 class="screen-reader-text"><?php esc_html_e( 'Nazari Metafield', 'nazari-metafield-for-elementor' ); ?></h1>
+			<h1 class="screen-reader-text"><?php esc_html_e( 'Elementor Metafield', 'nazari-metafield-for-elementor' ); ?></h1>
 
 			<section class="mfbe-hero">
 				<div class="mfbe-hero-text">
@@ -576,6 +564,10 @@ class MFBE_Admin {
 
 	private static function render_about_tab() {
 		$changelog = array(
+			'1.2.1' => array(
+				__( 'Renamed to Elementor Metafield. It works with or without Elementor.', 'nazari-metafield-for-elementor' ),
+				__( 'Security hardening: stricter cleaning of saved field definitions.', 'nazari-metafield-for-elementor' ),
+			),
 			'1.2.0' => array(
 				__( 'Elementor: show or hide any element by a meta field (Meta Field Visibility, in the Advanced tab).', 'nazari-metafield-for-elementor' ),
 				__( 'Elementor: loop query rules by Query ID, and the Meta Field Link widget.', 'nazari-metafield-for-elementor' ),
@@ -601,7 +593,7 @@ class MFBE_Admin {
 				<section class="mfbe-card mfbe-about">
 					<img src="<?php echo esc_url( self::logo() ); ?>" alt="Nazari Technologies" class="mfbe-about-logo">
 					<div>
-						<h3>Nazari Metafield For Elementor</h3>
+						<h3><?php esc_html_e( 'Elementor Metafield', 'nazari-metafield-for-elementor' ); ?></h3>
 						<p class="description"><?php echo esc_html( sprintf( /* translators: %s: version */ __( 'Version %s', 'nazari-metafield-for-elementor' ), MFBE_VERSION ) ); ?></p>
 						<p><?php esc_html_e( 'A lightweight meta box builder with first-class Elementor support.', 'nazari-metafield-for-elementor' ); ?></p>
 					</div>
@@ -625,7 +617,7 @@ class MFBE_Admin {
 					<header class="mfbe-card-head"><h3><?php esc_html_e( 'Author', 'nazari-metafield-for-elementor' ); ?></h3></header>
 					<ul class="mfbe-status">
 						<li><span><?php esc_html_e( 'Name', 'nazari-metafield-for-elementor' ); ?></span><b><?php echo esc_html( self::AUTHOR ); ?></b></li>
-						<li><span><?php esc_html_e( 'Website', 'nazari-metafield-for-elementor' ); ?></span><b><a href="<?php echo esc_url( self::AUTHOR_URL ); ?>" target="_blank" rel="noopener">sajjadnazari.com</a></b></li>
+						<li><span><?php esc_html_e( 'GitHub', 'nazari-metafield-for-elementor' ); ?></span><b><a href="<?php echo esc_url( self::AUTHOR_URL ); ?>" target="_blank" rel="noopener">github.com/SajjadNazari1995</a></b></li>
 						<li><span><?php esc_html_e( 'License', 'nazari-metafield-for-elementor' ); ?></span><b>GPL-2.0+</b></li>
 					</ul>
 					<p><a class="mfbe-btn mfbe-btn-primary" href="<?php echo esc_url( self::settings_url( 'feedback' ) ); ?>"><?php esc_html_e( 'Send feedback', 'nazari-metafield-for-elementor' ); ?></a></p>
@@ -738,7 +730,7 @@ class MFBE_Admin {
 		}
 
 		$host    = wp_parse_url( home_url(), PHP_URL_HOST );
-		$subject = sanitize_text_field( sprintf( '[Nazari Metafield %s] %s — %s', MFBE_VERSION, $types[ $type ], $host ? $host : 'site' ) );
+		$subject = sanitize_text_field( sprintf( '[Elementor Metafield %s] %s — %s', MFBE_VERSION, $types[ $type ], $host ? $host : 'site' ) );
 
 		$headers = array( 'Content-Type: text/plain; charset=UTF-8' );
 		if ( is_email( $email ) ) {

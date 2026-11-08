@@ -1,14 +1,14 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Nazari Metafield For Elementor 1.0.2\n"
+"Project-Id-Version: Elementor Metafield 1.0.2\n"
 "Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-msgid "Nazari Metafield"
-msgstr "Nazari Metafield"
+msgid "Elementor Metafield"
+msgstr "متا فیلد المنتور"
 
 msgid "Dashboard"
 msgstr "داشبورد"
@@ -19,8 +19,8 @@ msgstr "تنظیمات"
 msgid "Send feedback"
 msgstr "ارسال بازخورد"
 
-msgid "Nazari Metafield For Elementor — made by %s"
-msgstr "Nazari Metafield For Elementor — ساخته‌شده توسط %s"
+msgid "Elementor Metafield — made by %s"
+msgstr "متا فیلد المنتور — ساخته‌شده توسط %s"
 
 msgid "Copied!"
 msgstr "کپی شد!"
@@ -241,8 +241,8 @@ msgstr "نویسنده"
 msgid "Name"
 msgstr "نام"
 
-msgid "Website"
-msgstr "وب‌سایت"
+msgid "GitHub"
+msgstr "گیت‌هاب"
 
 msgid "License"
 msgstr "مجوز"
@@ -807,3 +807,12 @@ msgstr "متا فیلد (گالری)"
 
 msgid "The older “Meta Fields for Elementor” plugin was deactivated automatically. Your field groups and saved values are kept. Please reload this page."
 msgstr "افزونهٔ قدیمی «Meta Fields for Elementor» به‌طور خودکار غیرفعال شد. گروه‌های فیلد و مقدارهای ذخیره‌شده‌تان حفظ شده است. لطفاً صفحه را دوباره بارگذاری کنید."
+
+msgid "Build custom meta boxes (field groups) for posts and custom post types and show the fields on your site. Works with or without Elementor: a dedicated widget and dynamic tags in Elementor, a shortcode everywhere else. A lightweight JetEngine-style meta box builder."
+msgstr "ساخت متاباکس (گروه فیلد) سفارشی برای نوشته‌ها و انواع پست سفارشی و نمایش فیلدها در سایت. با المنتور و بدون آن کار می‌کند: ویجت و تگ‌های داینامیک در المنتور، و شورت‌کد در هر جای دیگر. یک سازنده سبک متا فیلد شبیه JetEngine."
+
+msgid "Renamed to Elementor Metafield. It works with or without Elementor."
+msgstr "نام به «متا فیلد المنتور» تغییر کرد. با المنتور و بدون آن کار می‌کند."
+
+msgid "Security hardening: stricter cleaning of saved field definitions."
+msgstr "تقویت امنیت: پاک‌سازی سخت‌گیرانه‌تر تعریف فیلدهای ذخیره‌شده."

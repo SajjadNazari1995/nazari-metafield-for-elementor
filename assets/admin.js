@@ -1,4 +1,4 @@
-/* Nazari Metafield For Elementor — admin pages */
+/* Elementor Metafield — admin pages */
 ( function () {
 	'use strict';
 

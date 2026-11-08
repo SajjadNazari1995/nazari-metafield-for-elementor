@@ -1,13 +1,12 @@
 <?php
 /**
- * Plugin Name:       Nazari Metafield For Elementor
- * Plugin URI:        https://sajjadnazari.com
- * Description:       Build custom meta boxes (field groups) for posts and custom post types, then use the fields inside Elementor through a dedicated widget and dynamic tags. A lightweight JetEngine-style meta box builder.
- * Version:           1.2.0
+ * Plugin Name:       Elementor Metafield
+ * Description:       Build custom meta boxes (field groups) for posts and custom post types and show the fields on your site. Works with or without Elementor: a dedicated widget and dynamic tags in Elementor, a shortcode everywhere else. A lightweight JetEngine-style meta box builder.
+ * Version:           1.2.1
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            Sajjad Nazari
- * Author URI:        https://sajjadnazari.com
+ * Author URI:        https://github.com/SajjadNazari1995
  * Text Domain:       nazari-metafield-for-elementor
  * Domain Path:       /languages
  * License:           GPL-2.0-or-later
@@ -23,7 +22,7 @@ if ( defined( 'MFBE_FILE' ) ) {
 		add_action(
 			'admin_notices',
 			static function () {
-				echo '<div class="notice notice-success"><p><strong>Nazari Metafield For Elementor:</strong> '
+				echo '<div class="notice notice-success"><p><strong>Elementor Metafield:</strong> '
 					. esc_html__( 'The older “Meta Fields for Elementor” plugin was deactivated automatically. Your field groups and saved values are kept. Please reload this page.', 'nazari-metafield-for-elementor' )
 					. '</p></div>';
 			}
@@ -32,7 +31,7 @@ if ( defined( 'MFBE_FILE' ) ) {
 	return;
 }
 
-define( 'MFBE_VERSION', '1.2.0' );
+define( 'MFBE_VERSION', '1.2.1' );
 define( 'MFBE_FILE', __FILE__ );
 define( 'MFBE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'MFBE_URL', plugin_dir_url( __FILE__ ) );

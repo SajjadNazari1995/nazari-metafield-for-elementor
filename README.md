@@ -5,14 +5,14 @@
   </picture>
 </p>
 
-<h1 align="center">Nazari Metafield For Elementor</h1>
+<h1 align="center">Elementor Metafield</h1>
 
 <p align="center">
   A lightweight, JetEngine-style meta box builder for WordPress, with first-class Elementor support.
 </p>
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-1.2.0-2f6bff">
+  <img alt="Version" src="https://img.shields.io/badge/version-1.2.1-2f6bff">
   <img alt="WordPress" src="https://img.shields.io/badge/WordPress-5.8%2B-21759b">
   <img alt="PHP" src="https://img.shields.io/badge/PHP-7.4%2B-777bb4">
   <img alt="License" src="https://img.shields.io/badge/license-GPL--2.0%2B-green">
@@ -63,7 +63,7 @@ Create custom field groups for posts, pages and custom post types from a visual 
 
 1. Download the latest `nazari-metafield-for-elementor-x.y.z.zip` from the [Releases](../../releases) page.
 2. In WordPress go to **Plugins > Add New > Upload Plugin**, choose the zip and activate it.
-3. Open **Nazari Metafield** in the admin menu.
+3. Open **Elementor Metafield** in the admin menu.
 
 > Do not use GitHub's "Download ZIP" button for installing: it names the folder `…-main`. Use the zip attached to a release (see [Building a release](#building-a-release)).
 
@@ -75,7 +75,7 @@ Just activate this plugin. The old one is deactivated automatically, and your fi
 
 ### 1. Create a field group
 
-**Nazari Metafield > Field Groups > Add New**: pick the post types, add your fields and publish. Each field has a label, a meta key (lowercase letters, numbers, underscores), a width, an optional description, placeholder and default value, and options for select / radio / checkbox fields (one `value : label` per line).
+**Elementor Metafield > Field Groups > Add New**: pick the post types, add your fields and publish. Each field has a label, a meta key (lowercase letters, numbers, underscores), a width, an optional description, placeholder and default value, and options for select / radio / checkbox fields (one `value : label` per line).
 
 ### 2. Fill in the values
 
@@ -124,7 +124,7 @@ $price = get_post_meta( get_the_ID(), 'price', true );
 
 ## Settings
 
-**Nazari Metafield > Settings**
+**Elementor Metafield > Settings**
 
 - **Loop Queries**: rules for the Query ID option of Elementor Pro loops.
 - **Tools**: import / export field groups as JSON.
@@ -165,7 +165,7 @@ git archive --prefix=nazari-metafield-for-elementor/ \
   -o nazari-metafield-for-elementor-1.2.0.zip v1.2.0
 ```
 
-Attach the zip to a GitHub Release. Files marked `export-ignore` in `.gitattributes` (screenshots, README, …) are left out of the zip.
+Attach the zip to a GitHub Release Files marked `export-ignore` in `.gitattributes` (screenshots, README, …) are left out of the zip.
 
 ## Roadmap
 
@@ -173,9 +173,13 @@ Ideas, not promises: repeater fields, relations between posts, a global options 
 
 ## Feedback
 
-Found a bug or have an idea? Open an [issue](../../issues), or use **Nazari Metafield > Settings > Feedback** inside WordPress.
+Found a bug or have an idea? Open an [issue](../../issues), or use **Elementor Metafield > Settings > Feedback** inside WordPress.
 
 ## Changelog
+
+### 1.2.1
+- Renamed to **Elementor Metafield**; works with or without Elementor.
+- Security: stricter cleaning of saved field definitions.
 
 ### 1.2.0
 - Elementor: **Meta Field Visibility** on every section, column, container and widget (Advanced tab).
@@ -203,7 +207,7 @@ Found a bug or have an idea? Open an [issue](../../issues), or use **Nazari Meta
 
 ## Author
 
-**Sajjad Nazari**, [sajjadnazari.com](https://sajjadnazari.com), [Nazari Technologies](https://sajjadnazari.com)
+**Sajjad Nazari**, [GitHub](https://github.com/SajjadNazari1995), Nazari Technologies
 
 ## License
 
